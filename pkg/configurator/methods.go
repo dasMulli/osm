@@ -225,3 +225,8 @@ func (c *client) GetFeatureFlags() configv1alpha2.FeatureFlags {
 func (c *client) GetOSMLogLevel() string {
 	return c.getMeshConfig().Spec.Observability.OSMLogLevel
 }
+
+// IsWebSocketsEnabled returns whether web sockets are enabled
+func (c *client) IsWebSocketsEnabled() bool {
+	return c.getMeshConfig().Spec.FeatureFlags.EnableWebSockets
+}

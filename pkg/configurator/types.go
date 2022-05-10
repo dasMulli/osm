@@ -96,4 +96,7 @@ type Configurator interface {
 
 	// GetFeatureFlags returns OSM's feature flags
 	GetFeatureFlags() configv1alpha2.FeatureFlags
+
+	// IsWebSocketsEnabled() returns whether web sockets are enabled
+	IsWebSocketsEnabled() bool
 }

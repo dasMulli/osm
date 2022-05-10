@@ -359,3 +359,17 @@ func (mr *MockConfiguratorMockRecorder) IsTracingEnabled() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsTracingEnabled", reflect.TypeOf((*MockConfigurator)(nil).IsTracingEnabled))
 }
+
+// IsWebSocketsEnabled mocks base method.
+func (m *MockConfigurator) IsWebSocketsEnabled() bool {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "IsWebSocketsEnabled")
+	ret0, _ := ret[0].(bool)
+	return ret0
+}
+
+// IsWebSocketsEnabled indicates an expected call of IsWebSocketsEnabled.
+func (mr *MockConfiguratorMockRecorder) IsWebSocketsEnabled() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsWebSocketsEnabled", reflect.TypeOf((*MockConfigurator)(nil).IsWebSocketsEnabled))
+}

@@ -279,6 +279,8 @@ spec:
                       type: boolean
                     enableRetryPolicy:
                       type: boolean
+                    enableWebSockets:
+                      type: boolean
     - name: v1alpha1
       served: true
       storage: false

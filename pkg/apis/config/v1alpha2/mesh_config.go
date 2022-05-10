@@ -234,4 +234,7 @@ type FeatureFlags struct {
 
 	// EnableRetryPolicy defines if retry policy is enabled.
 	EnableRetryPolicy bool `json:"enableRetryPolicy"`
+
+	// EnableWebSockets defines if "websocket" upgrades are enabled on envoy.
+	EnableWebSockets bool `json:"enableWebSockets"`
 }

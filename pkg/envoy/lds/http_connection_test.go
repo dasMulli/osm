@@ -23,6 +23,17 @@ func TestHTTPConnbuild(t *testing.T) {
 	contains := func(filters []*xds_hcm.HttpFilter, filterName string) bool {
 		return !notContains(filters, filterName)
 	}
+	notContainsUpgrade := func(upgradeConfigs []*xds_hcm.HttpConnectionManager_UpgradeConfig, upgradeType string) bool {
+		for _, u := range upgradeConfigs {
+			if u.UpgradeType == upgradeType {
+				return false
+			}
+		}
+		return true
+	}
+	containsUpgrade := func(upgradeConfigs []*xds_hcm.HttpConnectionManager_UpgradeConfig, upgradeType string) bool {
+		return !notContainsUpgrade(upgradeConfigs, upgradeType)
+	}
 
 	testCases := []struct {
 		name       string
@@ -127,6 +138,24 @@ func TestHTTPConnbuild(t *testing.T) {
 			},
 			assertFunc: func(a *assert.Assertions, connManager *xds_hcm.HttpConnectionManager) {
 				a.True(notContains(connManager.HttpFilters, wellknown.HealthCheck))
+			},
+		},
+		{
+			name: "websocket upgrade not present when disabled",
+			option: httpConnManagerOptions{
+				enableWebSockets: false,
+			},
+			assertFunc: func(a *assert.Assertions, connManager *xds_hcm.HttpConnectionManager) {
+				a.True(notContainsUpgrade(connManager.UpgradeConfigs, "websocket"))
+			},
+		},
+		{
+			name: "websocket upgrade present when enabled",
+			option: httpConnManagerOptions{
+				enableWebSockets: true,
+			},
+			assertFunc: func(a *assert.Assertions, connManager *xds_hcm.HttpConnectionManager) {
+				a.True(containsUpgrade(connManager.UpgradeConfigs, "websocket"))
 			},
 		},
 	}
