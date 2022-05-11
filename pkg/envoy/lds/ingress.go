@@ -62,6 +62,9 @@ func (lb *listenerBuilder) getIngressFilterChainFromTrafficMatch(trafficMatch *t
 		// Tracing options
 		enableTracing:      lb.cfg.IsTracingEnabled(),
 		tracingAPIEndpoint: lb.cfg.GetTracingEndpoint(),
+
+		// Additional options
+		HTTPUpgradeType: lb.cfg.GetMeshConfig().Spec.Traffic.HTTPUpgradeType,
 	}.build()
 	if err != nil {
 		return nil, errors.Errorf("Error building inbound HTTP connection manager for proxy with identity %s, traffic match: %v ", lb.serviceIdentity, trafficMatch)

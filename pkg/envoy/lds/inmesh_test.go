@@ -40,6 +40,7 @@ func TestGetOutboundHTTPFilterChainForService(t *testing.T) {
 	mockConfigurator.EXPECT().GetFeatureFlags().Return(configv1alpha2.FeatureFlags{
 		EnableWASMStats: false,
 	}).AnyTimes()
+	mockConfigurator.EXPECT().GetMeshConfig().AnyTimes()
 
 	lb := &listenerBuilder{
 		meshCatalog:     mockCatalog,
@@ -617,6 +618,7 @@ func TestGetOutboundHTTPFilter(t *testing.T) {
 	mockConfigurator.EXPECT().GetFeatureFlags().Return(configv1alpha2.FeatureFlags{
 		EnableWASMStats: false,
 	}).AnyTimes()
+	mockConfigurator.EXPECT().GetMeshConfig().AnyTimes()
 
 	filter, err := lb.getOutboundHTTPFilter(route.OutboundRouteConfigName)
 	assert.NoError(err)

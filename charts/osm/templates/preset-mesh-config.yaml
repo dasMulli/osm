@@ -21,6 +21,7 @@ data:
         "outboundIPRangeExclusionList": {{.Values.osm.outboundIPRangeExclusionList | mustToJson}},
         "outboundIPRangeInclusionList": {{.Values.osm.outboundIPRangeInclusionList | mustToJson}},
         "networkInterfaceExclusionList": {{.Values.osm.networkInterfaceExclusionList | mustToJson}}
+        "httpUpgradeType": {{.Values.osm.httpUpgradeType | mustToJson}}
       },
       "observability": {
         "enableDebugServer": {{.Values.osm.enableDebugServer | mustToJson}},

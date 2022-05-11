@@ -190,6 +190,10 @@ spec:
                         failureModeAllow:
                           description: Allows specifying if traffic should succeed or fail if the external authorization endpoint fails to respond.
                           type: boolean
+                    httpUpgradeType:
+                      description: Defines which upgrade type shall be allowed for HTTP traffic. e.g. 'websocket'
+                      type: string
+                      default: websocket
                 observability:
                   description: Configuration for observing the service mesh, including metrics, logs, tracing etc,.
                   type: object

@@ -121,6 +121,10 @@ type TrafficSpec struct {
 	// names to exclude from inbound and outbound traffic interception by the
 	// sidecar proxy.
 	NetworkInterfaceExclusionList []string `json:"networkInterfaceExclusionList"`
+
+	// HTTPUpgradeType defines which upgrade type shall be allowed for HTTP traffic.
+	// Valid values are empty, "websocket" and "CONNECT"
+	HTTPUpgradeType string `json:"httpUpgradeType,omitempty"`
 }
 
 // ObservabilitySpec is the type to represent OSM's observability configurations.

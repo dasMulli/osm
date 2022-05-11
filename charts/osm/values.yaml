@@ -264,6 +264,9 @@ osm:
 
   # -- Specifies a global list of network interface names to exclude for inbound and outbound traffic interception by the sidecar proxy.
   networkInterfaceExclusionList: []
+  
+  # -- Defines which upgrade type shall be allowed for HTTP traffic e.g. `"websocket"`. Use `""` to disable HTTP upgrades.
+  httpUpgradeType: "websocket"
 
   #
   # -- OSM's sidecar injector parameters

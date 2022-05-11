@@ -178,6 +178,7 @@ func TestGetIngressFilterChainFromTrafficMatch(t *testing.T) {
 			mockConfigurator.EXPECT().GetInboundExternalAuthConfig().Return(auth.ExtAuthConfig{
 				Enable: false,
 			})
+			mockConfigurator.EXPECT().GetMeshConfig().AnyTimes()
 
 			actual, err := lb.getIngressFilterChainFromTrafficMatch(tc.trafficMatch, configv1alpha2.SidecarSpec{})
 			assert.Equal(tc.expectError, err != nil)

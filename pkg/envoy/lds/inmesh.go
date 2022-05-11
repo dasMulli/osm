@@ -81,6 +81,9 @@ func (lb *listenerBuilder) getInboundHTTPFilters(proxyService service.MeshServic
 		// Tracing options
 		enableTracing:      lb.cfg.IsTracingEnabled(),
 		tracingAPIEndpoint: lb.cfg.GetTracingEndpoint(),
+
+		// Additional options
+		HTTPUpgradeType: lb.cfg.GetMeshConfig().Spec.Traffic.HTTPUpgradeType,
 	}.build()
 	if err != nil {
 		return nil, errors.Wrapf(err, "Error building inbound HTTP connection manager for proxy with identity %s and service %s", lb.serviceIdentity, proxyService)
@@ -250,6 +253,9 @@ func (lb *listenerBuilder) getOutboundHTTPFilter(routeConfigName string) (*xds_l
 		// Tracing options
 		enableTracing:      lb.cfg.IsTracingEnabled(),
 		tracingAPIEndpoint: lb.cfg.GetTracingEndpoint(),
+
+		// Additional options
+		HTTPUpgradeType: lb.cfg.GetMeshConfig().Spec.Traffic.HTTPUpgradeType,
 	}.build()
 	if err != nil {
 		return nil, errors.Wrapf(err, "Error building outbound HTTP connection manager for proxy identity %s", lb.serviceIdentity)

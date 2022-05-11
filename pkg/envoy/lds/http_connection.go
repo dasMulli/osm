@@ -43,6 +43,9 @@ type httpConnManagerOptions struct {
 	// Tracing options
 	enableTracing      bool
 	tracingAPIEndpoint string
+
+	// Additional options
+	HTTPUpgradeType string
 }
 
 func (options httpConnManagerOptions) build() (*xds_hcm.HttpConnectionManager, error) {
@@ -101,6 +104,12 @@ func (options httpConnManagerOptions) build() (*xds_hcm.HttpConnectionManager, e
 			return nil, errors.Wrap(err, "Error getting health check filter for HTTP connection manager")
 		}
 		connManager.HttpFilters = append(connManager.HttpFilters, hc)
+	}
+
+	if options.HTTPUpgradeType != "" {
+		connManager.UpgradeConfigs = append(connManager.UpgradeConfigs, &xds_hcm.HttpConnectionManager_UpgradeConfig{
+			UpgradeType: options.HTTPUpgradeType,
+		})
 	}
 
 	// *IMPORTANT NOTE*: The Router filter must always be the last filter

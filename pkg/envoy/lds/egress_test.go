@@ -60,6 +60,7 @@ func TestGetEgressHTTPFilterChain(t *testing.T) {
 			mockConfigurator.EXPECT().GetFeatureFlags().Return(configv1alpha2.FeatureFlags{
 				EnableEgressPolicy: true,
 				EnableWASMStats:    false}).AnyTimes()
+			mockConfigurator.EXPECT().GetMeshConfig().AnyTimes()
 			match := trafficpolicy.TrafficMatch{
 				DestinationPort: tc.destinationPort,
 			}
@@ -236,6 +237,7 @@ func TestGetEgressFilterChainsForMatches(t *testing.T) {
 				EnableEgressPolicy: true,
 				EnableWASMStats:    false,
 			}).AnyTimes()
+			mockConfigurator.EXPECT().GetMeshConfig().AnyTimes()
 
 			actual := lb.getEgressFilterChainsForMatches(tc.trafficMatches)
 
